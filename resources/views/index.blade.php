@@ -19,7 +19,7 @@
 	<section id="header">
 		<header>
 			<span class="image avatar"><img src="{{ asset('images/avatar.jpg') }}" alt="" /></span>
-			<h1 id="logo"><a href="#">Willis Corto</a></h1>
+			<h1 id="logo"><a href="#">@auth {{ Auth::user()->name }} @else Guest @endauth </a></h1>
 			<p>I got reprogrammed by a rogue AI<br />
 				and now I'm totally cray</p>
 		</header>
@@ -491,13 +491,13 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 	</div>
 
 	<!-- Scripts -->
-	<script src="assets/js/jquery.min.js"></script>
-	<script src="assets/js/jquery.scrollex.min.js"></script>
-	<script src="assets/js/jquery.scrolly.min.js"></script>
-	<script src="assets/js/browser.min.js"></script>
-	<script src="assets/js/breakpoints.min.js"></script>
-	<script src="assets/js/util.js"></script>
-	<script src="assets/js/main.js"></script>
+	<script src="{{	asset('assets/js/jquery.min.js')  }}"></script>
+	<script src="{{ asset('assets/js/jquery.scrollex.min.js') }}"></script>
+	<script src="{{ asset('assets/js/jquery.scrolly.min.js') }}"></script>
+	<script src="{{ asset('assets/js/browser.min.js') }}"></script>
+	<script src="{{ asset('assets/js/breakpoints.min.js') }}"></script>
+	<script src=" {{ asset('assets/js/util.js') }}"></script>
+	<script src="{{ asset('assets/js/main.js') }}"></script>
 
 </body>
 
