@@ -7,7 +7,7 @@
 <html>
 
 <head>
-	<title>Read Only by HTML5 UP</title>
+	<title>Cukrászat</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<link rel="stylesheet" href="{{asset('assets/css/main.css')  }}" />
@@ -18,17 +18,53 @@
 	<!-- Header -->
 	<section id="header">
 		<header>
+			<ul>
+				@auth
+					@if(Auth::user()->role->name === 'Admin')
+						<li>
+							<p><a href="{{ route('admin.dashboard') }}">Admin Panel</a></p>
+						</li>
+						<li>
+							<p><a href="{{ route('logout') }}"
+									onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Kijelentkezés</a>
+							</p>
+						</li>
+
+						<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+							@csrf
+						</form>
+
+					@elseif(Auth::user()->role->name === 'User')
+						<li>
+							<p><a href="{{ route('messages.list') }}">Üzenetek</a></p>
+						</li>
+						<li>
+							<p><a href="{{ route('logout') }}"
+									onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Kijelentkezés</a>
+							</p>
+						</li>
+
+						<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+							@csrf
+						</form>
+					@endif
+
+				@else
+					<li>
+						<p><a href="{{ route('login') }}">Bejelentkezés</a></p>
+						<p><a href="{{ route('register') }}">Regisztráció</a></p>
+					</li>
+				@endauth
+			</ul>
 			<span class="image avatar"><img src="{{ asset('images/avatar.jpg') }}" alt="" /></span>
-			<h1 id="logo"><a href="#">@auth {{ Auth::user()->name }} @else Guest @endauth </a></h1>
-			<p>I got reprogrammed by a rogue AI<br />
-				and now I'm totally cray</p>
+			<h1 id="logo"><a href="#">@auth {{ Auth::user()->name }} @else Vendég @endauth </a></h1>
 		</header>
 		<nav id="nav">
 			<ul>
-				<li><a href="#one" class="active">About</a></li>
-				<li><a href="#two">Things I Can Do</a></li>
-				<li><a href="#three">A Few Accomplishments</a></li>
-				<li><a href="#four">Contact</a></li>
+				<li><a href="#one" class="active">Rólunk</a></li>
+				<li><a href="#two">Amikben Jók Vagyunk</a></li>
+				<li><a href="#three">Néhány Elismerés</a></li>
+				<li><a href="#four">Lépjen Kapcsolatba</a></li>
 			</ul>
 		</nav>
 		<footer>
@@ -55,30 +91,28 @@
 				</div>
 				<div class="container">
 					<header class="major">
-						<h2>Read Only</h2>
-						<p>Just an incredibly simple responsive site<br />
-							template freebie by <a href="http://html5up.net">HTML5 UP</a>.</p>
+						<h2>Édes Pillanatok Cukrászda</h2>
+						<p> A legjobb cukrászda megnyílt!</p>
 					</header>
-					<p>Faucibus sed lobortis aliquam lorem blandit. Lorem eu nunc metus col. Commodo id in arcu ante
-						lorem ipsum sed accumsan erat praesent faucibus commodo ac mi lacus. Adipiscing mi ac commodo.
-						Vis aliquet tortor ultricies non ante erat nunc integer eu ante ornare amet commetus vestibulum
-						blandit integer in curae ac faucibus integer non. Adipiscing cubilia elementum.</p>
+					<p>Budapest 9. Kerületében megnyílt magyarország egyik legjobb cukrászdája! <br />
+						Nálunk akár kérésre, akár előre sütött sütiket vásárolhat, kedvező áron!<br />
+						Ne habozzon, vásároljon!
+					</p>
 				</div>
 			</section>
 
 			<!-- Two -->
 			<section id="two">
 				<div class="container">
-					<h3>Things I Can Do</h3>
-					<p>Integer eu ante ornare amet commetus vestibulum blandit integer in curae ac faucibus integer non.
-						Adipiscing cubilia elementum integer lorem ipsum dolor sit amet.</p>
+					<h3>Amikben jók vagyunk: </h3>
+					<p>A cukrászatunk nem csak egy egyszerű bolt, itt akár rendezvényeket is szervezhet!</p>
 					<ul class="feature-icons">
-						<li class="icon solid fa-code">Write all the code</li>
-						<li class="icon solid fa-cubes">Stack small boxes</li>
-						<li class="icon solid fa-book">Read books and stuff</li>
-						<li class="icon solid fa-coffee">Drink much coffee</li>
-						<li class="icon solid fa-bolt">Lightning bolt</li>
-						<li class="icon solid fa-users">Shadow clone technique</li>
+						<li class="icon solid fa-cookie">Legfinomabb sütik!</li>
+						<li class="icon solid fa-cubes">Gyermekbarát!</li>
+						<li class="icon solid fa-bomb">Bomba jó árak!</li>
+						<li class="icon solid fa-coffee">Finom kávé!</li>
+						<li class="icon solid fa-bolt">Extra gyors kiszolgálás!</li>
+						<li class="icon solid fa-users">Kedves személyzet!</li>
 					</ul>
 				</div>
 			</section>
@@ -86,9 +120,10 @@
 			<!-- Three -->
 			<section id="three">
 				<div class="container">
-					<h3>A Few Accomplishments</h3>
-					<p>Integer eu ante ornare amet commetus vestibulum blandit integer in curae ac faucibus integer non.
-						Adipiscing cubilia elementum integer. Integer eu ante ornare amet commetus.</p>
+					<h3>Néhány Sikereink</h3>
+					<p>Elindultunk néhány nemzetközi versenyen, ahol megmérettettük tudásunkat. <br />
+						Az alábbi képeken láthatni, hogy mi nem csak beszélünk, hanem cselekszünk is!
+					</p>
 					<div class="features">
 						<article>
 							<a href="#" class="image"><img src="images/pic01.jpg" alt="" /></a>
@@ -121,24 +156,24 @@
 			<!-- Four -->
 			<section id="four">
 				<div class="container">
-					<h3>Contact Me</h3>
-					<p>Integer eu ante ornare amet commetus vestibulum blandit integer in curae ac faucibus integer non.
-						Adipiscing cubilia elementum integer. Integer eu ante ornare amet commetus.</p>
+					<h3>Vegye fel velünk a kapcsolatot!</h3>
+					<p>Ha bármi kérdése van, vagy esetleg rendelést szeretne leadni, töltse ki az alábbi űrlapot, majd
+						küldje el! Kollégáink hamar felveszik önnel a kapcsolatot!</p>
 					<form method="POST" action="{{ route('contact.store') }}">
 						@csrf
 						<div class="row gtr-uniform">
 							<div class="col-6 col-12-xsmall"><input type="text" name="name" id="name"
-									placeholder="Name" /></div>
+									placeholder="Név" /></div>
 							<div class="col-6 col-12-xsmall"><input type="email" name="email" id="email"
-									placeholder="Email" /></div>
-							<div class="col-12"><input type="text" name="subject" id="subject" placeholder="Subject" />
+									placeholder="E-mail" /></div>
+							<div class="col-12"><input type="text" name="subject" id="subject" placeholder="Tárgy" />
 							</div>
-							<div class="col-12"><textarea name="message" id="message" placeholder="Message"
+							<div class="col-12"><textarea name="message" id="message" placeholder="Üzenet"
 									rows="6"></textarea></div>
 							<div class="col-12">
 								<ul class="actions">
-									<li><input type="submit" class="primary" value="Send Message" /></li>
-									<li><input type="reset" value="Reset Form" /></li>
+									<li><input type="submit" class="primary" value="Üzenet küldése" /></li>
+									<li><input type="reset" value="Űrlap visszaállítása" /></li>
 								</ul>
 							</div>
 						</div>
