@@ -36,6 +36,6 @@ class RegisterController extends Controller
 
         Auth::login($user);
 
-        return redirect()->route('/főoldal')->with('success', 'Sikeres regisztráció!');
+        return redirect()->route('home')->with('success', 'Sikeres regisztráció!');
     }
 }

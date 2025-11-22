@@ -22,7 +22,7 @@
 				@auth
 					@if(Auth::user()->role->name === 'Admin')
 						<li>
-							<p><a href="{{ route('admin.dashboard') }}">Admin Panel</a></p>
+							<p><a href="{{ route('admin') }}">Admin Panel</a></p>
 						</li>
 						<li>
 							<p><a href="{{ route('logout') }}"

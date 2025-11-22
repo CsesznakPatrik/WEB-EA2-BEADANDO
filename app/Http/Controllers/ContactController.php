@@ -25,6 +25,6 @@ class ContactController extends Controller
         //adatbázisba mentés
         Message::create($validatedData);
 
-        return redirect('fooldal');
+        return redirect('/fooldal');
     }
 }

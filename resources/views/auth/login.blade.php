@@ -23,7 +23,7 @@
             @csrf
             <div class="mb-4">
                 <label for="Felhasználónév" class="block text-gray-700">Felhasználónév</label>
-                <input id="username" type="username" name="username" required autofocus
+                <input id="name" type="text" name="name" required autofocus
                     class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400">
             </div>
 
@@ -39,7 +39,7 @@
         </form>
 
         <p>
-            <a href="{{ route('főoldal') }}" class="button">Vissza a főoldalra</a>
+            <a href="{{ route('home') }}" class="button">Vissza a főoldalra</a>
         </p>
 
     </div>
